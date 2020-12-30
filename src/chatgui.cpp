@@ -120,8 +120,7 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     ////
 
     // create chat logic instance
-    // Changed the instantiation to use the make_unique factory method.
-    //_chatLogic = new ChatLogic(); 
+    // Changed the instantiation to use the make_unique factory method. 
     _chatLogic = std::make_unique<ChatLogic>();
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI
@@ -136,12 +135,11 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
 
 ChatBotPanelDialog::~ChatBotPanelDialog()
 {
-    //// STUDENT CODE
+    //// DONE: STUDENT CODE
     ////
     
     // Removed delete _chatLogic since we are using a unique pointer.
     std::cout << "ChatBotPanelDialog Destructor" << std::endl;
-    //delete _chatLogic;
 
     ////
     //// EOF STUDENT CODE

@@ -14,11 +14,10 @@ private:
     wxBoxSizer *_dialogSizer;
     wxBitmap _image;
 
-    //// STUDENT CODE
+    //// DONE: STUDENT CODE
     ////
 
     // Changed _chatLogic from raw pointer to unique pointer
-    // ChatLogic *_chatLogic;
     std::unique_ptr<ChatLogic> _chatLogic;
 
     ////
