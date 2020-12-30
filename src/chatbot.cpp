@@ -11,6 +11,8 @@
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot()
 {
+    std::cout << "ChatBot Constructor" << std::endl;
+
     // invalidate data handles
     _image = nullptr;
     _chatLogic = nullptr;
@@ -48,21 +50,23 @@ ChatBot::~ChatBot()
 // Copy Constructor
 ChatBot::ChatBot(const ChatBot &source)
 {
-    std::cout << "Copy Constructor" << std::endl;
+    std::cout << "Chatbot Copy Constructor" << std::endl;
 
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    _image = new wxBitmap(*source._image);
+    _image = source._image;
 }
 
 // Move Constructor
 ChatBot::ChatBot(ChatBot &&source)
 {
-    std::cout << "Move Constructor" << std::endl;
+    std::cout << "Chatbot Move Constructor" << std::endl;
 
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
     _image = source._image;
+
+    _chatLogic->SetChatbotHandle(this);
 
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
@@ -72,16 +76,15 @@ ChatBot::ChatBot(ChatBot &&source)
 // Copy Assignment Constructor
 ChatBot &ChatBot::operator=(const ChatBot &source)
 {
-    std::cout << "Copy Assignment Constructor" << std::endl;
+    std::cout << "Chatbot Copy Assignment Constructor" << std::endl;
 
     if(this == &source) {
         return *this;
     }
 
-    delete _image;
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    _image = new wxBitmap(*source._image);
+    _image = source._image;
 
     return *this;
 }
@@ -89,16 +92,18 @@ ChatBot &ChatBot::operator=(const ChatBot &source)
 // Move Assignment Constructor
 ChatBot &ChatBot::operator=(ChatBot &&source)
 {
-    std::cout << "Move Assignment Constructor" << std::endl;
+    std::cout << "Chatbot Move Assignment Constructor" << std::endl;
 
     if(this == &source) {
         return *this;
     }
-
-    delete _image;
+    
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
     _image = source._image;
+
+    _chatLogic->SetChatbotHandle(this);
+
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
     source._image = nullptr;
