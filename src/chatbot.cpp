@@ -54,7 +54,7 @@ ChatBot::ChatBot(const ChatBot &source)
 
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    _image = source._image;
+    _image = new wxBitmap(*source._image);
 }
 
 // Move Constructor
@@ -84,7 +84,7 @@ ChatBot &ChatBot::operator=(const ChatBot &source)
 
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    _image = source._image;
+    _image = new wxBitmap(*source._image);
 
     return *this;
 }
